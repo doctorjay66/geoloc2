@@ -26,5 +26,6 @@ version = "1.0.0">
   <feature name="http://api.phonegap.com/1.0/media" />
   <feature name="http://api.phonegap.com/1.0/network" />
   <feature name="http://api.phonegap.com/1.0/notification" />
+  <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0"/>
 </widget>
 
