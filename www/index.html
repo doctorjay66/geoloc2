@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GeoLocation Example</title>
+<style>
+#map{
+width: 280px;
+height: 230px;
+display: block;
+margin: 5px auto;
+position: relative;
+}
+</style>
+</head>
+<body>
+<div id='map'></div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" 
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD--Vr_RD_29h6L4Ccf6BWROAWR5A5eH8c&sensor=true"></script>
+<script type="text/javascript">
+    var currentHeading = null;
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onFailure, {timeout: 5000, enableAccuracy: false});
+    }
+
+    function onSuccess(position){
+        var coords = position.coords;
+        initMap(coords.latitude, coords.longitude);
+    }
+    
+    function initMap(lat, long){
+        var options = {
+            zoom: 8,
+            center: new google.maps.LatLng(lat, long),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        var markerPoint = new google.maps.LatLng(lat, long);
+        var marker = new google.maps.Marker({position: markerPoint, map: map, title: 'Device\'s Location'});
+    }
+    
+    function onFailure(error){
+        alert(error.message);
+    }
+</script>
+</body>
+</html>
+
+
+
+
